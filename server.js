@@ -13,6 +13,10 @@ mongoose.connect(process.env.DATABASE).then(()=>{
 })
 
 //server 
+app.get('/', (req,res)=>{
+    console.log('server route is working properly')
+    res.end("server is working fine")
+})
 
 const port = process.env.PORT || 8080;
 
