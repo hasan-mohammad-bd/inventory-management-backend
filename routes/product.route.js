@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const productControler = require("../controlers/product.controler");
+const multer = require("multer");
+const uploader = require("../middleware/uploader")
+
+router.post("/file-up",uploader.single("image"), productControler.fileUpload)
 
 router.route("/bulk-update")
     .patch(productControler.bulkUpdateByIdProduct);
