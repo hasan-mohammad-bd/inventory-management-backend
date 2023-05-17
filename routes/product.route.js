@@ -5,7 +5,7 @@ const multer = require("multer");
 const uploader = require("../middleware/uploader")
 
 router.post("/file-up",uploader.single("image"), productControler.fileUpload)
-
+//to upload multiple file, use array instead of single
 router.route("/bulk-update")
     .patch(productControler.bulkUpdateByIdProduct);
 router.route("/bulk-delete")
