@@ -1,4 +1,6 @@
+const mongoose = require("mongoose")
 const Stock = require("../models/Stock");
+const ObjectId = mongoose.Types.ObjectId;
 
 exports.getStockService = async (filters, queries) => {
   const stocks = await Stock.find(filters)
@@ -56,4 +58,15 @@ exports.bulkDeleteProductByIdService = async (data) => {
   //update many things with same data
   const result = await Stock.deleteMany({ _id: data });
   return result;
+};
+
+exports.getStockByIdService = async (id) => {
+/*   const stock = await Stock.findOne({_id: id}).populate("store.id").populate("suppliedBy.id").populate("brand.id");
+  return stock */
+
+  const  stock = await Stock.aggregate([
+    {$match : {_id: ObjectId(id)}}
+
+  ])
+  return stock
 };
